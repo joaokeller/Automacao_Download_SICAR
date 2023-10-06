@@ -38,8 +38,7 @@ def main():
             pyautogui.hotkey("ctrl", "w")
             time.sleep(3)
             pyautogui.hotkey("ctrl", "r")
-            time.sleep(2)
-            time.sleep(5)
+            time.sleep(7)
        
 
 #repetição
@@ -104,7 +103,7 @@ def busca(ibgeid , vezesb):
             pyautogui.hotkey("shift","enter")
             time.sleep(4)
 
-            os.chdir('D:/Joao/ShapesBrasil')
+            os.chdir('C:/Users/joao/Downloads')
             if "captcha.png" not in os.listdir():
                 for i in range(3):
                     pyautogui.hotkey("tab")
@@ -236,7 +235,7 @@ def busca(ibgeid , vezesb):
                 time.sleep(1)
             pyautogui.hotkey("enter")
             time.sleep(2)
-    
+
     return True, vezesb
 
 main()
