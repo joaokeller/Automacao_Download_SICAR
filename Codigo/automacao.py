@@ -44,9 +44,11 @@ def main():
 
 #repetição
 def busca(ibgeid , vezesb):
-    for i in range(8):
+    i = 0
+    while i < 8:
         pyautogui.hotkey('tab')
         time.sleep(0.2)
+        i = i+1
     time.sleep(1)
     pyautogui.hotkey("shift", "f10")
     time.sleep(1)
