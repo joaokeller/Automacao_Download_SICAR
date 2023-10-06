@@ -76,11 +76,9 @@ def busca(ibgeid):
             if "captcha.png" not in os.listdir():
                 pyautogui.hotkey("tab", presses = 3, interval = 0.1)
                 time.sleep(0.1)
-                pyautogui.hotkey("enter")
-                time.sleep(3)
+                pyautogui.hotkey("enter", interval = 3)
             else:
                 img = Image.open("C:/Users/joao/Downloads/captcha.png").convert("RGBA")
-
                 width, height = img.size
                 img_com_fundo_branco = Image.new("RGBA", (width, height), (255, 255, 255))  # Criar uma imagem com fundo branco
                 img_com_fundo_branco.paste(img, (0, 0), img)  # Colar a imagem RGB na imagem com fundo branco
@@ -120,47 +118,42 @@ def busca(ibgeid):
                                 pixels[x, y] = (media, media, media, a)
 
                 img_com_fundo_branco.save("C:/Users/joao/Downloads/captcha.png")
-                pyautogui.hotkey("ctrl", "t")
-                time.sleep(1.5)
+                pyautogui.hotkey("ctrl", "t", interval = 2.5)
                 pc.copy("file:///C:/Users/joao/Downloads/captcha.png")
-                time.sleep(1)
-                pyautogui.hotkey("ctrl", "v")
-                time.sleep(1)
-                pyautogui.press('enter')
-                time.sleep(3)
+                pyautogui.hotkey("ctrl", "v", interval = 1)
+                pyautogui.press('enter', interval = 3)
 
-                pyautogui.moveTo(971, 565)
+                pyautogui.moveTo(734, 470)
                 time.sleep(1)
-                pyautogui.click(button='right')
-                time.sleep(1)
-                pyautogui.hotkey('p')
-                time.sleep(1)
+                pyautogui.click(button='right', interval = 1)
+                pyautogui.press('p', interval = 1)
 
                 # botao texto do google lens
-                pyautogui.moveTo(1694, 451)
+                pyautogui.moveTo(1264, 333)
                 time.sleep(1)
                 pyautogui.click(button='left')
 
                 # botao selecionar texto
-                pyautogui.moveTo(1694, 280)
+                pyautogui.moveTo(1264, 674)
                 time.sleep(1)
                 pyautogui.click(button='left')
 
                 # botao copiar texto
-                pyautogui.hotkey("shift", "tab")
-                time.sleep(1)
-                pyautogui.hotkey('enter')
+                pyautogui.hotkey("tab", presses = 2, interval= 0.5)
+                pyautogui.hotkey('enter', interval = 0.2)
                 texto_anterior = texto
                 texto = pc.paste()
 
                 #fechar len
+                pyautogui.hotkey("tab", interval= 0.5)
+                pyautogui.hotkey("shift", "tab", interval= 0.5, presses= 2 )
+                
                 time.sleep(2)
                 pyautogui.moveTo(1872, 136)
                 time.sleep(0.2)
-                pyautogui.click(button='left')
+                pyautogui.click(button='left', interval = 0.1)
 
-                pyautogui.hotkey("ctrl", "w")
-                time.sleep(1)
+                pyautogui.hotkey("ctrl", "w", interval = 1)
                 os.remove("C:/Users/joao/Downloads/captcha.png")
 
                 if len(texto) == 5 and texto != texto_anterior:
@@ -176,18 +169,14 @@ def busca(ibgeid):
 
         os.chdir('C:/Users/joao/Downloads')
         qtde = len(os.listdir())
-
-        pyautogui.hotkey("tab")
-        time.sleep(0.5)
-        pyautogui.hotkey("enter")
-        time.sleep(6)
+        pyautogui.hotkey("tab", interval = 0.5)
+        pyautogui.hotkey("enter", interval = 4)
 
         novaqtde = len(os.listdir())
         print(qtde)
         print(novaqtde)
         if qtde < novaqtde:
-            pyautogui.hotkey("esc")
-            time.sleep(2)
+            pyautogui.hotkey("esc", interval = 2)
             break
         else:
             pyautogui.hotkey("shift", "tab", presses= 2, interval= 1)
