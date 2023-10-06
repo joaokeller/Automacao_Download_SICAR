@@ -3,17 +3,17 @@ import time
 import webbrowser
 from PIL import Image
 import pyautogui
-import pyperclip as pc 
+import pyperclip as pc
 
 def main():
-    listaCod = [4309209, 4309258, 4309407]  # lista com o código do IBGE dos municípios desejados
+    listacod = [4309209, 4309258, 4309407]  # lista com o código do IBGE dos municípios desejados
     url = "https://www.car.gov.br/publico/imoveis/index"
     webbrowser.open(url, 2)
     time.sleep(7)
-    for muni in listaCod:
+    for muni in listacod:
         situacao = False
         muni = str(muni)
-        while not situacao:                             
+        while not situacao:
             dicio = {'11':"RO", '12':"AC",'13':"AM",'14':"RR",'15':"PA",'16':"AP",'17':"TO",
                      '21':"MA",'22':"PI",'23':"CE",'24':"RN",'25':"PB", '26':"PE",'27':"AL",'28':"SE",'29':"BA",
                      '31':"MG",'32':"ES",'33':"RJ",'35':"SP",
@@ -82,8 +82,7 @@ def busca(ibgeid):
                 width, height = img.size
                 img_com_fundo_branco = Image.new("RGBA", (width, height), (255, 255, 255))  # Criar uma imagem com fundo branco
                 img_com_fundo_branco.paste(img, (0, 0), img)  # Colar a imagem RGB na imagem com fundo branco
-
-                pixels = img_com_fundo_branco.load()
+                pixels = img_com_fundo_branco.load() # Carrega pixels
                 for x in range(width):
                     nomedospixels = ""
                     vermelhovirabranco = True
@@ -92,14 +91,13 @@ def busca(ibgeid):
                         media = int((r + g + b)/3)
                         if media > 210:
                             nomedospixels = nomedospixels + "b"
-                        elif media < 49:
+                        elif media < 40:
                             nomedospixels = nomedospixels + "p"
                         else:
                             nomedospixels = nomedospixels + "v"
 
                     if "vp" in nomedospixels or "pv" in nomedospixels:
                         vermelhovirabranco = False
-                        
                     for y in range(height):
                         r, g, b, a = pixels[x, y]
                         media = int((r + g + b)/3)
@@ -107,15 +105,10 @@ def busca(ibgeid):
                             pixels[x, y] = (255, 255, 255, a)
                         elif media > 210:
                             pixels[x, y] = (255, 255, 255, a)
-                        else: 
-                            # ra, ga, ba, aa = pixels[x,(y-1)] # acima
-                            # mediaacima = int((ra + ga + ba)/3)
-                            # rl, gl, bl, al = pixels[(x-1),y] # esquerda
-                            # mediaesquerda = int((rl + gl + bl)/3)
-                            if media > 40 and vermelhovirabranco:
-                                pixels[x, y] = (255, 255, 255, a)
-                            else:
-                                pixels[x, y] = (media, media, media, a)
+                        elif media > 40 and vermelhovirabranco:
+                            pixels[x, y] = (255, 255, 255, a)
+                        else:
+                            pixels[x, y] = (media, media, media, a)
 
                 img_com_fundo_branco.save("C:/Users/joao/Downloads/captcha.png")
                 pyautogui.hotkey("ctrl", "t", interval = 2.5)
@@ -147,12 +140,10 @@ def busca(ibgeid):
                 #fechar len
                 pyautogui.hotkey("tab", interval= 0.5)
                 pyautogui.hotkey("shift", "tab", interval= 0.5, presses= 2 )
-                
                 time.sleep(2)
                 pyautogui.moveTo(1872, 136)
                 time.sleep(0.2)
                 pyautogui.click(button='left', interval = 0.1)
-
                 pyautogui.hotkey("ctrl", "w", interval = 1)
                 os.remove("C:/Users/joao/Downloads/captcha.png")
 
