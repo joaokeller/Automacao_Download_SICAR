@@ -1,7 +1,6 @@
 import os
 import time
 import webbrowser
-import keyboard
 from PIL import Image
 import pyautogui
 import pyperclip as pc 
@@ -9,18 +8,13 @@ import pyperclip as pc
 def main():
     listaCod = [4309209, 4309258, 4309407]  # lista com o código do seu município
     print(len(listaCod))
-    listaCod.reverse()
-
     url = "https://www.car.gov.br/publico/imoveis/index"
     webbrowser.open(url, 2)
-    
     time.sleep(7)
-    vezes = 1
+    
     for muni in listaCod:
         situacao = False
-        if vezes > 15:
-            vezes = 1
-
+        vezes = 1
         muni = str(muni)
         while not situacao:                             
             dicio = {'11':"RO", '12':"AC",'13':"AM",'14':"RR",'15':"PA",'16':"AP",'17':"TO",
@@ -32,40 +26,38 @@ def main():
             url = "https://www.car.gov.br/publico/municipios/downloads?sigla=" + sigla
             webbrowser.open(url, 2)
             time.sleep(7)
-            situacao, vezes = busca(muni, vezes)
-            pyautogui.moveTo(0.5, 0.5)
+            situacao = busca(muni, vezes)
+            pyautogui.moveTo(500, 500)
             time.sleep(0.5)
             pyautogui.hotkey("ctrl", "w")
             time.sleep(3)
             pyautogui.hotkey("ctrl", "r")
             time.sleep(7)
-       
-
 #repetição
 def busca(ibgeid , vezesb):
     i = 0
     while i < 8:
-        pyautogui.hotkey('tab')
+        pyautogui.press('tab')
         time.sleep(0.2)
         i = i+1
     time.sleep(1)
     pyautogui.hotkey("shift", "f10")
-    time.sleep(1)
-    keyboard.send('up')
-    time.sleep(1)
-    keyboard.send('enter')
     time.sleep(2)
-    keyboard.send('up')
+    pyautogui.press('up')
     time.sleep(1)
-    keyboard.send('up')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.press('up')
+    time.sleep(1)
+    pyautogui.press('up')
     time.sleep(1)
     pyautogui.hotkey("shift", "f10")
     time.sleep(1)
-    keyboard.send('down')
+    pyautogui.press('down')
     time.sleep(1)
-    keyboard.send('down')
+    pyautogui.press('down')
     time.sleep(1)
-    keyboard.send('enter')
+    pyautogui.press('enter')
     time.sleep(1)
     pc.copy('<button type="button" class="btn btn-shp btn-sm btn-download" title="Baixar Shapefile" data-tipodownload="shapefile" data-municipio="'+ibgeid+'"><h4><i class="fa fa-globe"></i></h4></button>')
     pyautogui.hotkey("ctrl", "a")
@@ -76,38 +68,51 @@ def busca(ibgeid , vezesb):
     time.sleep(1)
     pyautogui.hotkey("ctrl", "shift" , "i")
     time.sleep(3)
-    keyboard.send('enter')
+    pyautogui.press('enter')
     time.sleep(3)
-    pyautogui.hotkey('tab')
+    pyautogui.press('tab')
     time.sleep(0.1)
-    pyautogui.hotkey('tab')
+    pyautogui.press('tab')
     time.sleep(0.1)
-    pc.copy(f"jookza{ibgeid}@gmail.com")
+    pc.copy(f"umemail{ibgeid}@gmail.com")
     time.sleep(0.6)
     pyautogui.hotkey("ctrl", "v")
     time.sleep(1)
     while True:
         texto = ""
         while True:
-            # imagem
             vezesb += 1
-            if vezesb > 15:
-                return True, vezesb
+            if vezesb > 15: # 15 é o número de tentativas maxímo#
+                return True
             time.sleep(2)
-            pyautogui.moveTo(942, 397)
+            pyautogui.press('tab')
             time.sleep(2)
-            pyautogui.click(button='right')
-            time.sleep(2)
-            pyautogui.hotkey('a')
+            pyautogui.press("apps")
+            time.sleep(1)
+            pyautogui.press('n')
             time.sleep(3)
-            pyautogui.hotkey("shift","enter")
-            time.sleep(4)
-
+            pyautogui.press('up')
+            time.sleep(1)
+            pyautogui.press('up')
+            time.sleep(1)
+            pyautogui.press("apps")
+            time.sleep(1)
+            pyautogui.press('s')
+            time.sleep(1)
+            pyautogui.press('up')
+            time.sleep(1)
+            pyautogui.press('enter')
+            time.sleep(2)
+            pyautogui.hotkey("ctrl", "shift" , "i")
             os.chdir('C:/Users/joao/Downloads')
+            for arq in os.listdir():
+                if arq.startswith("www.car.gov.br"): # inicio de nome da imagem baixada
+                    os.rename(arq,"captcha.png")
+                    break
+
             if "captcha.png" not in os.listdir():
-                for i in range(3):
-                    pyautogui.hotkey("tab")
-                    time.sleep(0.1)
+                pyautogui.hotkey("tab", presses = 3, interval = 0.1)
+                time.sleep(0.1)
                 pyautogui.hotkey("enter")
                 time.sleep(3)
             else:
@@ -158,7 +163,7 @@ def busca(ibgeid , vezesb):
                 time.sleep(1)
                 pyautogui.hotkey("ctrl", "v")
                 time.sleep(1)
-                keyboard.send('enter')
+                pyautogui.press('enter')
                 time.sleep(3)
 
                 pyautogui.moveTo(971, 565)
@@ -236,6 +241,6 @@ def busca(ibgeid , vezesb):
             pyautogui.hotkey("enter")
             time.sleep(2)
 
-    return True, vezesb
+    return True
 
 main()
