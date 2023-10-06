@@ -123,55 +123,54 @@ def busca(ibgeid):
 
                 # botao texto do google lens
                 pyautogui.moveTo(1264, 333)
-                time.sleep(1)
+                time.sleep(2)
                 pyautogui.click(button='left')
 
                 # botao selecionar texto
                 pyautogui.moveTo(1264, 674)
-                time.sleep(1)
+                time.sleep(2)
                 pyautogui.click(button='left')
 
                 # botao copiar texto
-                pyautogui.hotkey("tab", presses = 2, interval= 0.5)
-                pyautogui.hotkey('enter', interval = 0.2)
+                pyautogui.moveTo(1183, 443)
+                time.sleep(2)
+                pyautogui.click(button='left')
                 texto_anterior = texto
                 texto = pc.paste()
 
                 #fechar len
-                pyautogui.hotkey("tab", interval= 0.5)
-                pyautogui.hotkey("shift", "tab", interval= 0.5, presses= 2 )
+                pyautogui.moveTo(1400, 109)
                 time.sleep(2)
-                pyautogui.moveTo(1872, 136)
-                time.sleep(0.2)
-                pyautogui.click(button='left', interval = 0.1)
+                pyautogui.click(button='left')
+                time.sleep(1)
                 pyautogui.hotkey("ctrl", "w", interval = 1)
                 os.remove("C:/Users/joao/Downloads/captcha.png")
 
                 if len(texto) == 5 and texto != texto_anterior:
                     break
                 else:
-                    pyautogui.hotkey("tab", presses= 3, interval= 0.1)
-                    pyautogui.hotkey("enter", interval= 2)
+                    pyautogui.press("enter", interval= 2)
+                    pyautogui.hotkey("shift", "tab", interval= 0.1)
 
         time.sleep(3)
-        pyautogui.hotkey("tab", presses= 4, interval= 1)
+        pyautogui.press("tab", interval= 1)
         pyautogui.hotkey("ctrl", "a", interval= 0.5)
         pyautogui.hotkey("ctrl", "v", interval= 0.5)
 
         os.chdir('C:/Users/joao/Downloads')
         qtde = len(os.listdir())
-        pyautogui.hotkey("tab", interval = 0.5)
-        pyautogui.hotkey("enter", interval = 4)
+        pyautogui.press("tab", interval = 0.5)
+        pyautogui.press("enter", interval = 4)
 
         novaqtde = len(os.listdir())
         print(qtde)
         print(novaqtde)
         if qtde < novaqtde:
-            pyautogui.hotkey("esc", interval = 2)
+            pyautogui.press("esc", interval = 2)
             break
         else:
             pyautogui.hotkey("shift", "tab", presses= 2, interval= 1)
-            pyautogui.hotkey("enter", interval= 2)
+            pyautogui.press("enter", interval= 2)
 
     return True
 
