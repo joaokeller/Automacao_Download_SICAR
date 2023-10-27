@@ -66,10 +66,12 @@ def busca(ibgeid):
         texto = ""
         while True:
             vezesb += 1
-            if vezesb > 15:  # 15 é o número de tentativas maxímo#
+            if vezesb > 10:  # 10 é o número de tentativas maxímo
+                print(ibgeid + ", ")
                 return True
             time.sleep(2)
             pyautogui.press('tab', interval=2)
+            pyautogui.press('enter', interval=2)
             pyautogui.press("apps", interval=1)
             pyautogui.press('n', interval=3)
             pyautogui.press('up', presses=2, interval=1)
@@ -171,7 +173,6 @@ def busca(ibgeid):
                 if len(texto) == 5 and texto != texto_anterior:
                     break
                 else:
-                    pyautogui.press("enter", interval=2)
                     pyautogui.hotkey("shift", "tab", interval=0.1)
 
         time.sleep(3)
@@ -179,21 +180,17 @@ def busca(ibgeid):
         pyautogui.hotkey("ctrl", "a", interval=0.5)
         pyautogui.hotkey("ctrl", "v", interval=0.5)
 
-        os.chdir('C:/Users/joao/Downloads')
         qtde = len(os.listdir())
         pyautogui.press("tab", interval=0.5)
         pyautogui.press("enter", interval=4)
-
         novaqtde = len(os.listdir())
-        print(qtde)
-        print(novaqtde)
         if qtde < novaqtde:
             pyautogui.press("esc", interval=2)
             break
         else:
-            pyautogui.hotkey("shift", "tab", presses=2, interval=1)
-            pyautogui.press("enter", interval=2)
-
+            pyautogui.hotkey("shift", "tab", interval=1.5)
+            pyautogui.hotkey("shift", "tab", interval=1.5)
+            pyautogui.hotkey("shift", "tab", interval=1.5)
     return True
 
 
