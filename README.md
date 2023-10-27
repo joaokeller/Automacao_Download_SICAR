@@ -36,5 +36,5 @@ Dessa forma afim de facilitar o download desses shapesfiles desenvolvi essa auto
 
 
  ## Ideias Relacionadas ao Tema
- - Seria interessante a simplificação e união do shapefiles de todo o Brasil de modo a desenvolver um shape com área cultivavel nacional podendo assim cruzar isso com o mapa de solos, uso de solo, temperatura, queimadas etc...
+ - Seria interessante a simplificação e união do shapefiles de todo o Brasil de modo a desenvolver um shape com área cultivável nacional podendo assim cruzar isso com o mapa de solos, uso de solo, temperatura, queimadas etc...
 
