@@ -1,8 +1,11 @@
 # Automacao_Download_SICAR
 Automação em Python para download de shapefiles do SICAR
 
-Contexto: Os shapefiles armazenados neste site (https://www.car.gov.br/publico/municipios/downloads) são dados públicos de cadastro das propriedades rurais contendo a delimitação de diferentes tipos de uso e situação do terreno (área de preservação permanente, área de reserva legal, hidrografia etc...) tais dados são produzidos pelos próprios proprietários creio que mediante contratação de topógrafo. Esses dados estão disponíveis divididos por município mediante mediante preenchimento de validação de captcha.
-No Brasil há 5568 municípios. Dessa forma afim de facilitar o download desses shapesfiles desenvolvi essa automação que faz uso do Google Lens para resolução do captcha.
+Contexto: Os shapefiles armazenados neste site (https://www.car.gov.br/publico/municipios/downloads). 
+São dados públicos de cadastro das propriedades rurais contendo a delimitação de terrenos e diferentes tipos de uso dentro deles (área de preservação permanente, área de reserva legal, hidrografia etc...) tais dados são produzidos pelos próprios proprietários creio que por meio da contratação de topógrafo. 
+Esses dados estão divididos arquivos .zip por município mediante preenchimento de captcha.
+No Brasil há 5568 municípios cada um deles possui um código de identificação que pode ser consultado em: https://www.ibge.gov.br/explica/codigos-dos-municipios.php. 
+Dessa forma afim de facilitar o download desses shapesfiles desenvolvi essa automação que faz uso do Google Lens para resolução do captcha.
 
 
 Bibliotecas Usadas
@@ -17,6 +20,7 @@ Bibliotecas Usadas
 Informações Gerais
  - Versão Python: Python 3.12.0
  - Navegador: Google Chrome, versão 118.0.5993.90 (Compilação oficial) (64 bits)
+              O download está configurado para que não seja solicitado confirmação antes de baixar.
  - Dimensões da tela: 1440x900
 
 
@@ -32,6 +36,6 @@ Informações Gerais
  - Refazer sem o uso do Chrome e sem o PyAutoGui, ou seja, só pelo terminal.
 
 
- Ideias Relacionadas
+ Ideias Relacionadas ao Tema
  - Seria interessante a simplificação e união do shapefiles de todo o Brasil de modo a desenvolver um shape com área cultivavel nacional podendo assim cruzar isso com o mapa de solos, uso de solo, temperatura, queimadas etc...
 
