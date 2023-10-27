@@ -202,6 +202,4 @@ def formatarImage():
     img_com_fundo_branco.save(
         "C:/Users/joao/Downloads/captcha.png")
 
-
-
 main()
