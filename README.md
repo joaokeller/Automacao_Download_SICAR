@@ -1,5 +1,6 @@
 # Automacao_Download_SICAR
 Automação em Python para download de shapefiles do SICAR
+
 Contexto: Os shapefiles armazenados neste site (https://www.car.gov.br/publico/municipios/downloads) são dados públicos de cadastro das propriedades rurais contendo a delimitação de diferentes tipos de uso e situação do terreno (área de preservação permanente, área de reserva legal, hidrografia etc...) tais dados são produzidos pelos próprios proprietários creio que mediante contratação de topógrafo. Esses dados estão disponíveis divididos por município mediante mediante preenchimento de validação de captcha.
 No Brasil há 5568 municípios. Dessa forma afim de facilitar o download desses shapesfiles desenvolvi essa automação que faz uso do Google Lens para resolução do captcha.
 
